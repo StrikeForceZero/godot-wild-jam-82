@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://bsudc5jcsiy5h"]
+[gd_scene load_steps=7 format=3 uid="uid://bsudc5jcsiy5h"]
 
+[ext_resource type="Script" uid="uid://d1o2ajeyketfc" path="res://components/tracker/tracker.gd" id="1_7hxfb"]
 [ext_resource type="PackedScene" uid="uid://cy8ex4qptydk3" path="res://components/tracker/tracker_screen.tscn" id="1_xpovp"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xpovp"]
@@ -17,7 +18,10 @@ viewport_path = NodePath("SubViewport")
 metallic = 1.0
 roughness = 0.86
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_7hxfb"]
+
 [node name="Tracker" type="Node3D"]
+script = ExtResource("1_7hxfb")
 
 [node name="SubViewport" type="SubViewport" parent="."]
 disable_3d = true
@@ -25,9 +29,10 @@ handle_input_locally = false
 size = Vector2i(512, 256)
 render_target_update_mode = 4
 
-[node name="TrackerScreen" parent="SubViewport" instance=ExtResource("1_xpovp")]
+[node name="TrackerScreen" parent="SubViewport" node_paths=PackedStringArray("tracker") instance=ExtResource("1_xpovp")]
 position = Vector2(256, 256)
 scale = Vector2(0.9, 0.9)
+tracker = NodePath("../..")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(0.16, 0, 0, 0, -6.993822e-09, 0.99999994, 0, -0.16, -4.3711385e-08, 0, 0.052256107, -0.0023272038)
@@ -49,3 +54,18 @@ size = Vector3(0.87109375, 0.13366699, 0.49945068)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7513803, 0)
 operation = 2
 size = Vector3(0.8, 0.5348633, 0.40722656)
+
+[node name="ScanArea" type="Area3D" parent="."]
+unique_name_in_owner = true
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ScanArea"]
+shape = SubResource("SphereShape3D_7hxfb")
+
+[node name="RayCast" type="RayCast3D" parent="ScanArea"]
+unique_name_in_owner = true
+target_position = Vector3(0, 0, -1)
+collision_mask = 2
+
+[connection signal="body_entered" from="ScanArea" to="." method="_on_scan_area_body_entered"]

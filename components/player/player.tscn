@@ -4,17 +4,21 @@
 [ext_resource type="PackedScene" uid="uid://bsudc5jcsiy5h" path="res://components/tracker/tracker.tscn" id="1_t3162"]
 [ext_resource type="Script" uid="uid://73sx2n11tuol" path="res://components/ninety_deg_turn_controller.gd" id="3_ph1f6"]
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_ph1f6"]
+
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_t3162"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_t3162"]
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_ph1f6"]
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_kfe3d")
 
 [node name="Tracker" parent="." instance=ExtResource("1_t3162")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.893)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.9109165)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.7573914)
+shape = SubResource("SphereShape3D_ph1f6")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_t3162")
@@ -30,7 +34,3 @@ shape = SubResource("CapsuleShape3D_t3162")
 script = ExtResource("3_ph1f6")
 target = NodePath("..")
 metadata/_custom_type_script = "uid://73sx2n11tuol"
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.7394749)
-shape = SubResource("SphereShape3D_ph1f6")
