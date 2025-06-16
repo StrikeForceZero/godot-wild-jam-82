@@ -1,0 +1,51 @@
+[gd_scene load_steps=4 format=3 uid="uid://bqrjceognhesd"]
+
+[ext_resource type="PackedScene" uid="uid://rbitugoxahdo" path="res://components/player/player.tscn" id="1_x286i"]
+[ext_resource type="VoxelGIData" uid="uid://dwi8utbwnw1ni" path="res://components/res/world.VoxelGI_data.res" id="2_vl24i"]
+
+[sub_resource type="Environment" id="Environment_ta6rp"]
+background_mode = 1
+ambient_light_source = 1
+ambient_light_energy = 0.0
+reflected_light_source = 1
+ssr_enabled = true
+ssao_enabled = true
+ssil_enabled = true
+sdfgi_enabled = true
+sdfgi_use_occlusion = true
+glow_enabled = true
+volumetric_fog_enabled = true
+
+[node name="World" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ta6rp")
+
+[node name="Player" parent="." instance=ExtResource("1_x286i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.006624222, 1.1920929e-07, 0.008224249)
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.6064506, 0)
+size = Vector3(134.5, 1, 261.7)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(-0.968748, 0, 0.24804765, 0, 1, 0, -0.24804765, 0, -0.968748, -5.4105372, 4.175295, -16.14486)
+size = Vector3(19.553589, 10.375732, 1)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(0.42884052, 0, -0.9033802, 0, 1, 0, 0.9033802, 0, 0.42884052, -5.183775, 3.4124155, -0.62387085)
+size = Vector3(19.553589, 10.375732, 1)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.276794, 2.6495361, -6.73578)
+size = Vector3(19.553589, 10.375732, 1)
+
+[node name="ReflectionProbe" type="ReflectionProbe" parent="."]
+size = Vector3(151.00757, 20, 92.12598)
+
+[node name="VoxelGI" type="VoxelGI" parent="."]
+size = Vector3(128.54858, 20, 96.09473)
+data = ExtResource("2_vl24i")
