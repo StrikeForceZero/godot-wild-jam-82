@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cy8ex4qptydk3"]
+
+[ext_resource type="Script" uid="uid://dvr6srqmloauo" path="res://components/tracker/tracker_screen.gd" id="1_m5b7h"]
+[ext_resource type="Texture2D" uid="uid://bl1rr617uft63" path="res://assets/tracker.svg" id="2_wei5p"]
+
+[node name="TrackerScreen" type="Node2D"]
+script = ExtResource("1_m5b7h")
+
+[node name="Tracker" type="Sprite2D" parent="."]
+texture = ExtResource("2_wei5p")
