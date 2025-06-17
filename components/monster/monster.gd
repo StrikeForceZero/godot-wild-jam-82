@@ -4,7 +4,7 @@ class_name Monster
 
 @onready var nav_agent: NavigationAgent3D = $NavigationAgent3D
 @export var target_pos := Vector3.ZERO
-@export var speed: float = 5.0
+@export var speed: float = 100.0
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -16,6 +16,6 @@ func _physics_process(delta: float) -> void:
 		return
 	look_at(Vector3(next_pos.x, position.y, next_pos.z))
 	var dir = (next_pos - global_position).normalized()
-	velocity.x += dir.x * speed * delta
-	velocity.z += dir.z * speed * delta
+	velocity.x = dir.x * speed * delta
+	velocity.z = dir.z * speed * delta
 	move_and_slide()
