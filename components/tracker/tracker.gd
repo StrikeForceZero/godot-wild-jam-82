@@ -33,8 +33,10 @@ func _on_scan_area_body_entered(body: Node3D) -> void:
 	on_hit.emit(hit_location)
 	var audio = AudioStreamPlayer3D.new()
 	audio.global_position = body.global_position
-	audio.unit_size = 300.0
+	audio.unit_size = 25.0
 	audio.autoplay = true
+	audio.attenuation_model = AudioStreamPlayer3D.AttenuationModel.ATTENUATION_LOGARITHMIC
+	audio.doppler_tracking = AudioStreamPlayer3D.DopplerTracking.DOPPLER_TRACKING_PHYSICS_STEP
 	audio.stream = AudioStreamOggVorbis.load_from_file("res://assets/sounds/beep-313342.ogg")
 	audio.finished.connect(despawn(audio))
 	get_tree().get_root().add_child(audio)

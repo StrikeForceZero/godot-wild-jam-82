@@ -36,3 +36,4 @@ target = NodePath("..")
 metadata/_custom_type_script = "uid://73sx2n11tuol"
 
 [node name="AudioListener3D" type="AudioListener3D" parent="."]
+current = true
