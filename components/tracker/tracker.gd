@@ -17,8 +17,8 @@ const MIN_PITCH = 0.25
 const MAX_PITCH = 1.5
 
 const MAX_DISTANCE = 50.0
-const MIN_VOLUME_DB = -40.0  # Silence
-const MAX_VOLUME_DB = -25.0    # Full volume
+const MIN_VOLUME_DB = -25.0  # -40.0 Silence
+const MAX_VOLUME_DB = -15.0    # Full volume
 
 func _physics_process(delta: float) -> void:
 	radius += speed * delta
@@ -51,19 +51,20 @@ func _on_scan_area_body_entered(body: Node3D) -> void:
 	audio.volume_db = volume_db
 	
 	# Pan the audio
-	var relative := dir.normalized()
-	var listener_basis := global_transform.basis
-	var local: Vector3 = listener_basis.inverse() * relative
-	audio.panning_strength = clamp(local.x, -1.0, 1.0)  # Pan between -1 (left) and 1 (right)
+	#var relative := dir.normalized()
+	#var listener_basis := global_transform.basis
+	#var local: Vector3 = listener_basis.inverse() * relative
+	#audio.panning_strength = clamp(local.x, -100.0, 100.0)  # Pan between -1 (left) and 1 (right)
 	
 	var pitch_scale = REFERENCE_DISTANCE / distance
 	pitch_scale = clamp(pitch_scale, MIN_PITCH, MAX_PITCH)
 	audio.pitch_scale = pitch_scale
 	
-	audio.global_position = global_position
-	#audio.global_position = body.global_position
-	#audio.unit_size = 5.0
-	#audio.max_distance = 500.0
-	#audio.attenuation_model = AudioStreamPlayer3D.AttenuationModel.ATTENUATION_LOGARITHMIC
+	#audio.global_position = global_position
+	audio.global_position = body.global_position
+	audio.unit_size = 50.0
+	audio.max_distance = 500.0
+	audio.attenuation_model = AudioStreamPlayer3D.AttenuationModel.ATTENUATION_LOGARITHMIC
+	audio.attenuation_filter_db = 0.0
 	# audio.doppler_tracking = AudioStreamPlayer3D.DopplerTracking.DOPPLER_TRACKING_PHYSICS_STEP
 	GlobalUtil.play_audio("res://assets/sounds/beep-313342.ogg", audio)
