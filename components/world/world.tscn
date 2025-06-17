@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bqrjceognhesd"]
+[gd_scene load_steps=7 format=3 uid="uid://bqrjceognhesd"]
 
 [ext_resource type="PackedScene" uid="uid://rbitugoxahdo" path="res://components/player/player.tscn" id="1_x286i"]
+[ext_resource type="Script" uid="uid://bgdwv3ptuurbn" path="res://components/monster/monster_target.gd" id="2_68pxc"]
 [ext_resource type="VoxelGIData" uid="uid://dwi8utbwnw1ni" path="res://components/res/world.VoxelGI_data.res" id="2_vl24i"]
 [ext_resource type="PackedScene" uid="uid://cxqc17ilx5uye" path="res://components/monster/monster.tscn" id="3_dpm3d"]
 
@@ -22,6 +23,10 @@ fog_light_color = Color(0, 0, 0, 1)
 fog_density = 1.0
 volumetric_fog_enabled = true
 
+[sub_resource type="NavigationMesh" id="NavigationMesh_dpm3d"]
+vertices = PackedVector3Array(-66.75, -0.60645056, -10.100006, -4, -0.60645056, -9.850006, -4, -0.60645056, -11.350006, -2.75, -0.60645056, -11.600006, -2.75, -0.60645056, -130.35, -66.75, -0.60645056, -130.35, -1.75, -0.60645056, -11.350006, -1.75, -0.60645056, -9.350006, 66.75, -0.60645056, -9.350006, 66.75, -0.60645056, -130.35, -66.75, -0.60645056, -0.3500061, -4, -0.60645056, -0.6000061, -1.75, -0.60645056, -1.1000061, 66.75, -0.60645056, -1.1000061, -3.75, -0.60645056, 1.1499939, -66.75, -0.60645056, 130.4, -2, -0.60645056, 1.1499939, 66.75, -0.60645056, 130.4)
+polygons = [PackedInt32Array(0, 2, 1), PackedInt32Array(2, 0, 3), PackedInt32Array(3, 0, 4), PackedInt32Array(4, 0, 5), PackedInt32Array(8, 7, 6), PackedInt32Array(6, 3, 8), PackedInt32Array(8, 3, 4), PackedInt32Array(8, 4, 9), PackedInt32Array(11, 10, 1), PackedInt32Array(1, 10, 0), PackedInt32Array(7, 8, 12), PackedInt32Array(12, 8, 13), PackedInt32Array(11, 14, 10), PackedInt32Array(10, 14, 15), PackedInt32Array(13, 16, 12), PackedInt32Array(13, 17, 16), PackedInt32Array(16, 17, 15), PackedInt32Array(15, 14, 16)]
+
 [node name="World" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -30,12 +35,24 @@ environment = SubResource("Environment_ta6rp")
 [node name="Player" parent="." instance=ExtResource("1_x286i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.006624222, 1.1920929e-07, 0.008224249)
 
-[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+[node name="MonsterTarget" type="Node3D" parent="Player" node_paths=PackedStringArray("monster")]
+script = ExtResource("2_68pxc")
+monster = NodePath("../../Monster")
+metadata/_custom_type_script = "uid://bgdwv3ptuurbn"
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_dpm3d")
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="NavigationRegion3D"]
 use_collision = true
 
-[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
+[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.6064506, 0)
 size = Vector3(134.5, 1, 261.7)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9933047, 0.5016632, -5.1865234)
+size = Vector3(1, 3.3168945, 11.373047)
 
 [node name="ReflectionProbe" type="ReflectionProbe" parent="."]
 size = Vector3(151.00757, 20, 92.12598)
