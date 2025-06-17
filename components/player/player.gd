@@ -11,8 +11,8 @@ func _process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
-	var input_dir := Vector3.FORWARD * Input.get_axis("move_backward", "move_forward")
-	var direction := (transform.basis * input_dir).normalized()
+	var input_dir := Input.get_vector("strafe_left", "strafe_right", "move_backward", "move_forward")
+	var direction := (transform.basis * Vector3(input_dir.x, 0.0, -input_dir.y)).normalized()
 	if direction:
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
