@@ -1,4 +1,4 @@
-[gd_resource type="MeshLibrary" load_steps=23 format=4 uid="uid://c04ldhlybp3ms"]
+[gd_resource type="MeshLibrary" load_steps=25 format=4 uid="uid://ccrqexvhjlmc5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_67bs3"]
 resource_name = "FloorMaterial"
@@ -49,6 +49,9 @@ data = {
 [sub_resource type="ImageTexture" id="ImageTexture_cxxi2"]
 image = SubResource("Image_4r8cp")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_tn8qm"]
+size = Vector3(2, 0.2, 2)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o5ehk"]
 resource_name = "WallMaterial"
 cull_mode = 2
@@ -56,7 +59,7 @@ albedo_color = Color(0.27214828, 0.27214828, 0.27214828, 1)
 metallic = 1.0
 roughness = 0.2590674
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_olq8d"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_tn8qm"]
 _surfaces = [{
 "aabb": AABB(-1, -0.20000005, -1, 2, 0.20000005, 2),
 "format": 34896613377,
@@ -108,7 +111,7 @@ _surfaces = [{
 "vertex_data": PackedByteArray("AAAAAP////8AAP//AAD//wAA////////AAAAAAAA//8AAAAAAAD///////8AAP//AAD//wAA/////wAAAAD/////AAAAAP//////////////////AAD/////AAD///////8AAP////8AAP//////////////////AAAAAP//////////AABU1QAA/////1TVAAD//wAAVNX///////9U1f8//3//P/9//z//f/8//3//v/8//7//P/+//z//P/+//7//f/+//3//v/9//7//f/9//3//f/9//3//f/9//39U1aoqVNWqKlTVqipU1aoq")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_olq8d")
+shadow_mesh = SubResource("ArrayMesh_tn8qm")
 
 [sub_resource type="Image" id="Image_88ux1"]
 data = {
@@ -121,6 +124,9 @@ data = {
 
 [sub_resource type="ImageTexture" id="ImageTexture_iscog"]
 image = SubResource("Image_88ux1")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jn7od"]
+size = Vector3(2, 2, 0.2)
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_fbvuw"]
 _surfaces = [{
@@ -327,7 +333,7 @@ item/0/name = "EmptyFloor"
 item/0/mesh = SubResource("ArrayMesh_4r8cp")
 item/0/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/0/mesh_cast_shadow = 1
-item/0/shapes = []
+item/0/shapes = [SubResource("BoxShape3D_tn8qm"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.099999994, -1.4901161e-07)]
 item/0/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/0/navigation_layers = 1
 item/0/preview = SubResource("ImageTexture_cxxi2")
@@ -335,7 +341,7 @@ item/1/name = "SingleWallFloor"
 item/1/mesh = SubResource("ArrayMesh_o2hw5")
 item/1/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/1/mesh_cast_shadow = 1
-item/1/shapes = []
+item/1/shapes = [SubResource("BoxShape3D_jn7od"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.9), SubResource("BoxShape3D_tn8qm"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.099999994, -1.4901161e-07)]
 item/1/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/1/navigation_layers = 1
 item/1/preview = SubResource("ImageTexture_iscog")
@@ -343,7 +349,7 @@ item/2/name = "DoubleWallFloor"
 item/2/mesh = SubResource("ArrayMesh_nakcl")
 item/2/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/2/mesh_cast_shadow = 1
-item/2/shapes = []
+item/2/shapes = [SubResource("BoxShape3D_tn8qm"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.099999994, -1.4901161e-07), SubResource("BoxShape3D_jn7od"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.9), SubResource("BoxShape3D_jn7od"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -0.9000001)]
 item/2/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/2/navigation_layers = 1
 item/2/preview = SubResource("ImageTexture_dyh0r")
@@ -351,7 +357,7 @@ item/3/name = "TripleWallFloor"
 item/3/mesh = SubResource("ArrayMesh_dtl5c")
 item/3/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/3/mesh_cast_shadow = 1
-item/3/shapes = []
+item/3/shapes = [SubResource("BoxShape3D_tn8qm"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.099999994, -1.4901161e-07), SubResource("BoxShape3D_jn7od"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.9), SubResource("BoxShape3D_jn7od"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -0.9000001), SubResource("BoxShape3D_jn7od"), Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.90000004, 1, -5.9604645e-08)]
 item/3/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/3/navigation_layers = 1
 item/3/preview = SubResource("ImageTexture_w07jo")
@@ -359,7 +365,7 @@ item/4/name = "DoubleWallCornerFloor"
 item/4/mesh = SubResource("ArrayMesh_h3t0a")
 item/4/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/4/mesh_cast_shadow = 1
-item/4/shapes = []
+item/4/shapes = [SubResource("BoxShape3D_tn8qm"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.099999994, -1.4901161e-07), SubResource("BoxShape3D_jn7od"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.9), SubResource("BoxShape3D_jn7od"), Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.90000004, 1, -5.9604645e-08)]
 item/4/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/4/navigation_layers = 1
 item/4/preview = SubResource("ImageTexture_low0y")

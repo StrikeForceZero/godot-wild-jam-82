@@ -4,6 +4,7 @@
 [ext_resource type="Script" path="res://components/monster/monster_target.gd" id="2_68pxc"]
 [ext_resource type="VoxelGIData" uid="uid://dwi8utbwnw1ni" path="res://components/res/world.VoxelGI_data.res" id="2_vl24i"]
 [ext_resource type="PackedScene" uid="uid://cxqc17ilx5uye" path="res://components/monster/monster.tscn" id="3_dpm3d"]
+[ext_resource type="PackedScene" uid="uid://da4l7uyakik87" path="res://components/world/grid_world.tscn" id="3_sjasp"]
 
 [sub_resource type="Environment" id="Environment_ta6rp"]
 background_mode = 1
@@ -41,37 +42,8 @@ monster = NodePath("../../Monster")
 navigation_mesh = SubResource("NavigationMesh_dpm3d")
 metadata/_edit_lock_ = true
 
-[node name="CSGCombiner3D" type="CSGCombiner3D" parent="NavigationRegion3D"]
-use_collision = true
-
-[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.6064506, 0)
-size = Vector3(134.5, 1, 261.7)
-metadata/_edit_lock_ = true
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9933047, 0.5519966, -5.1865234)
-size = Vector3(1, 3.3168945, 11.373047)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.9866095, 0.5519967, -10.373047)
-size = Vector3(1, 3.3168945, 11.373047)
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.075848, 0.7094064, 7.1576586)
-size = Vector3(9.922852, 3.6317139, 1)
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.075848, 0.7094064, 1.2522078)
-size = Vector3(9.922852, 3.6317139, 1)
-
-[node name="CSGBox3D7" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.075848, 0.7094064, -5.27599)
-size = Vector3(9.922852, 3.6317139, 1)
-
-[node name="CSGBox3D8" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.075848, 0.7094064, -11.982925)
-size = Vector3(9.922852, 3.6317139, 1)
+[node name="GridMap" parent="NavigationRegion3D" instance=ExtResource("3_sjasp")]
+physics_material = SubResource("PhysicsMaterial_w2h0o")
 
 [node name="ReflectionProbe" type="ReflectionProbe" parent="."]
 size = Vector3(151.00757, 20, 92.12598)
