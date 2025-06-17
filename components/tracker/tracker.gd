@@ -10,6 +10,7 @@ var radius: float = 1.0
 
 @onready var scan_area: Area3D = %ScanArea
 @onready var ray_cast: RayCast3D = %RayCast
+@onready var tracker_screen: TrackerScreen = %TrackerScreen
 
 
 func _process(delta: float) -> void:
@@ -17,12 +18,16 @@ func _process(delta: float) -> void:
 	if radius > max_radius:
 		radius = radius - max_radius
 	scan_area.scale = Vector3.ONE * radius
+	tracker_screen.tracker_sprite_rotation = global_rotation.y
 	
 
 func _on_scan_area_body_entered(body: Node3D) -> void:
 	var hit_location = body.global_position - ray_cast.global_position
-	ray_cast.target_position = hit_location
+	ray_cast.target_position = ray_cast.to_local(body.global_position)
+	var offset = (ray_cast.target_position - ray_cast.position)
+	ray_cast.target_position += offset
 	var collider = ray_cast.get_collider()
 	if collider == null:
 		return
+	print(body, hit_location)
 	on_hit.emit(hit_location)

@@ -30,9 +30,11 @@ size = Vector2i(512, 256)
 render_target_update_mode = 4
 
 [node name="TrackerScreen" parent="SubViewport" node_paths=PackedStringArray("tracker") instance=ExtResource("1_xpovp")]
+unique_name_in_owner = true
 position = Vector2(256, 256)
 scale = Vector2(0.9, 0.9)
 tracker = NodePath("../..")
+tracker_sprite_rotation = 3.400000000008731
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(0.16, 0, 0, 0, -6.993822e-09, 0.99999994, 0, -0.16, -4.3711385e-08, 0, 0.052256107, -0.0023272038)
