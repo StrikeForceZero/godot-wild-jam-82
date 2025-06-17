@@ -11,6 +11,7 @@ var radius: float = 0.25
 @onready var scan_area: Area3D = %ScanArea
 @onready var ray_cast: RayCast3D = %RayCast
 @onready var tracker_screen: TrackerScreen = %TrackerScreen
+@onready var bip_audio_player: AudioStreamPlayer3D = $AudioStreamPlayer3D
 
 const REFERENCE_DISTANCE = 10.0
 const MIN_PITCH = 0.25
@@ -24,7 +25,7 @@ func _physics_process(delta: float) -> void:
 	radius += speed * delta
 	if radius > max_radius:
 		radius = radius - max_radius
-		GlobalUtil.play_audio("res://assets/sounds/water-drop-3-84577.ogg")
+		bip_audio_player.play()
 	tracker_screen.radius = radius
 	scan_area.scale = Vector3.ONE * radius
 	tracker_screen.tracker_sprite_rotation = global_rotation.y
