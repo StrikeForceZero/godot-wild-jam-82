@@ -12,8 +12,7 @@ var radius: float = 1.0
 @onready var ray_cast: RayCast3D = %RayCast
 @onready var tracker_screen: TrackerScreen = %TrackerScreen
 
-
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	radius += speed * delta
 	if radius > max_radius:
 		radius = radius - max_radius
@@ -27,7 +26,8 @@ func _on_scan_area_body_entered(body: Node3D) -> void:
 	var offset = (ray_cast.target_position - ray_cast.position)
 	ray_cast.target_position += offset
 	var collider = ray_cast.get_collider()
+	print(body, " hit_location: ", hit_location, " collider: ", collider)
 	if collider == null:
-		return
-	print(body, hit_location)
+		# return
+		pass
 	on_hit.emit(hit_location)

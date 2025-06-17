@@ -8,7 +8,7 @@ var radius: float = 0.0
 
 @export var hits: Dictionary[Vector3, float] = {}
 @export var tracker: Tracker
-@export var marker_ttl: float = 2.0
+@export var marker_ttl: float = 4.0
 @export var tracker_scale: float = 1.0
 @export var tracker_sprite_rotation: float = 0.0
 @onready var tracker_sprite: Sprite2D = %TrackerSprite
@@ -21,15 +21,18 @@ func _process(delta: float) -> void:
 	radius += speed * delta
 	if radius > max_radius:
 		radius = radius - max_radius
-	process_hits(delta)
 	queue_redraw()
+	
+func _physics_process(delta: float) -> void:
+	process_hits(delta)
 	
 func _draw() -> void:
 	draw_circle(Vector2.ZERO, radius, Color.WHITE, false, clamp(max_radius/radius, 0.001, 5.0))
 	for pos in hits.keys():
 		var hit = hits[pos]
-		var marker_pos3 = tracker.global_transform.basis * pos
-		var marker_pos2 = Vector2(-marker_pos3.x, marker_pos3.z)
+		var relative = pos - tracker.global_transform.origin
+		var marker_pos3 = tracker.global_transform.basis.inverse() * relative
+		var marker_pos2 = Vector2(marker_pos3.x, marker_pos3.z) * tracker_scale
 		var color = Color.WHITE
 		color.a = hit / marker_ttl
 		draw_circle(marker_pos2 * tracker_scale, 10.0, color)
