@@ -15,6 +15,10 @@ run/main_scene="uid://bqrjceognhesd"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+GlobalUtil="*res://global_util.gd"
+
 [input]
 
 turn_left={

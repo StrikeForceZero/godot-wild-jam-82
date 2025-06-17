@@ -24,7 +24,7 @@ func _physics_process(delta: float) -> void:
 	radius += speed * delta
 	if radius > max_radius:
 		radius = radius - max_radius
-		play_audio("res://assets/sounds/water-drop-3-84577.ogg")
+		GlobalUtil.play_audio("res://assets/sounds/water-drop-3-84577.ogg")
 	tracker_screen.radius = radius
 	scan_area.scale = Vector3.ONE * radius
 	tracker_screen.tracker_sprite_rotation = global_rotation.y
@@ -66,16 +66,4 @@ func _on_scan_area_body_entered(body: Node3D) -> void:
 	#audio.max_distance = 500.0
 	#audio.attenuation_model = AudioStreamPlayer3D.AttenuationModel.ATTENUATION_LOGARITHMIC
 	# audio.doppler_tracking = AudioStreamPlayer3D.DopplerTracking.DOPPLER_TRACKING_PHYSICS_STEP
-	play_audio("res://assets/sounds/beep-313342.ogg", audio)
-	
-func play_audio(path: String, audio: AudioStreamPlayer3D = null):
-	if audio == null:
-		audio = AudioStreamPlayer3D.new()
-	audio.autoplay = true
-	audio.stream = AudioStreamOggVorbis.load_from_file(path)
-	audio.finished.connect(despawn(audio))
-	get_tree().get_root().add_child(audio)
-
-func despawn(node: Node) -> Callable:
-	return func ():
-		node.queue_free()
+	GlobalUtil.play_audio("res://assets/sounds/beep-313342.ogg", audio)
