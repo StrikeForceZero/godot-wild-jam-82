@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://da4l7uyakik87"]
+
+[ext_resource type="MeshLibrary" uid="uid://c04ldhlybp3ms" path="res://components/world/tiles.tres" id="1_05sba"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="GridMap" type="GridMap" parent="."]
+mesh_library = ExtResource("1_05sba")
+cell_center_y = false
+bake_navigation = true
+data = {
+"cells": PackedInt32Array(1, 65534, 5, 1, 65535, 655361, 65535, 65535, 655361, 0, 65535, 655361, 0, 65534, 5, 65535, 0, 655360, 0, 0, 655360, 65534, 65535, 655361, 1, 0, 655363, 0, 1, 655361, 65535, 1, 655361, 65534, 0, 1048577, 65533, 65535, 1441795, 1, 1, 1441795, 2, 2, 655363, 2, 65535, 655363, 65534, 1, 655362, 0, 2, 655362, 65535, 2, 1, 65533, 0, 1441793, 65533, 1, 1441793, 65533, 2, 4, 65534, 2, 1048580, 1, 2, 1)
+}

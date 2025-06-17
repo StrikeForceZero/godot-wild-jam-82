@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://b6pnwubvjr6jp"]
+
+[ext_resource type="PackedScene" uid="uid://dqmx5qbynm2gf" path="res://assets/gridmap/tiles_merged.blend" id="1_tn8qm"]
+
+[node name="Tiles" instance=ExtResource("1_tn8qm")]
