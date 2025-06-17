@@ -16,6 +16,7 @@ func _physics_process(delta: float) -> void:
 	radius += speed * delta
 	if radius > max_radius:
 		radius = radius - max_radius
+	tracker_screen.radius = radius
 	scan_area.scale = Vector3.ONE * radius
 	tracker_screen.tracker_sprite_rotation = global_rotation.y
 	

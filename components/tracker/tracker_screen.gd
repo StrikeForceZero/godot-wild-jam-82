@@ -2,7 +2,6 @@ extends Node2D
 
 class_name TrackerScreen
 
-@export var speed: float = 100.0
 @export var max_radius: float = 300.0
 var radius: float = 0.0
 
@@ -18,9 +17,6 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	tracker_sprite.rotation = tracker_sprite_rotation
-	radius += speed * delta
-	if radius > max_radius:
-		radius = radius - max_radius
 	queue_redraw()
 	
 func _physics_process(delta: float) -> void:
