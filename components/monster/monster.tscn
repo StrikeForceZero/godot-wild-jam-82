@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cxqc17ilx5uye"]
 
-[ext_resource type="Script" uid="uid://ccwf7h05dqqvh" path="res://components/monster/monster.gd" id="1_c0nme"]
+[ext_resource type="Script" path="res://components/monster/monster.gd" id="1_c0nme"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_cdntb"]
 
@@ -28,4 +28,5 @@ shape = SubResource("CapsuleShape3D_cdntb")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0.44439858, -0.4937961)
+gi_mode = 2
 mesh = SubResource("SphereMesh_tjh6v")
