@@ -35,6 +35,7 @@ unique_name_in_owner = true
 position = Vector2(256, 256)
 scale = Vector2(0.9, 0.9)
 tracker = NodePath("../..")
+tracker_scale = 2.75
 tracker_sprite_rotation = 3.400000000008731
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
